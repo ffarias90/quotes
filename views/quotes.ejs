@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes</title>
+    <!--estilos-->
+    <link rel="stylesheet" href="/static/style.css">
+    <!--Materialize-->
+    <link rel="stylesheet" href="/static/materialize.min.css">
+    <script src="/static/materialize.min.js">
+    </script>
+    <!--estilos propios-->
+    <style>
+
+    </style>
+    <!--fin estilos-->
+</head>
+
+<body>
+    <div class="container">
+        <ul class="collection with-header">
+            <li class="collection-header">
+                <h4>Here are the awesome quotes!</h4>
+            </li>
+            <li class="collection-item">
+                <% for (let quote of quotes) { %>
+                    <hr>
+                    <p>
+                        <%=quote.quote%>
+                    </p>
+                    <p>
+                        <%=quote.author%>
+                    </p>
+                    <% } %>
+            </li>
+
+        </ul>
+        <a class="waves-effect waves-light btn" href="/">Back</a>
+
+
+
+
+
+
+    </div>
+</body>
+
+</html>

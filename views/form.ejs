@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes</title>
+    <!--estilos-->
+    <link rel="stylesheet" href="/static/style.css">
+    <!--Materialize-->
+    <link rel="stylesheet" href="/static/materialize.min.css">
+    <script src="/static/materialize.min.js">
+    </script>
+    <!--estilos propios-->
+    <style>
+
+    </style>
+    <!--fin estilos-->
+</head>
+
+<body>
+    <div class="container">
+        <h3>Welcome to Quoting Dojo</h3>
+        <div class="row">
+            <form class="col s6" action="/quotes" method="POST">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="name" type="text" class="validate" name="author">
+                        <label for="name">Your Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="quote" type="text" class="validate" name="quote">
+                        <label for="quote">Your quote</label>
+                    </div>
+                </div>
+                <input class="waves-effect waves-light btn" type="submit" value="Add my quote!">
+                <a class="waves-effect waves-light red btn" href="/quotes">Skip to quotes!</a>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+    </script>
+</body>
+
+</html>
