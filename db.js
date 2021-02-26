@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 // traemos el constructor de cada modelo
-const QuoteModel = require('./models/quote');
+//const QuoteModel = require('./models/quote');
 
 // creamos la conexion a la base de datos
 const sql = new Sequelize('quotes', 'root', '1234', {
@@ -8,8 +8,23 @@ const sql = new Sequelize('quotes', 'root', '1234', {
     dialect: 'mysql'
 });
 
-// aca inicializamos los modelos
-const Quote = QuoteModel(sql, Sequelize);
+// aca inicializamos los modelos (tablas)
+const Quote = sql.define('Quote', {
+    id: {
+        type: Sequelize.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    author: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    quote: {
+        type: Sequelize.STRING,
+        allowNull: false
+    }
+});
+
 
 // sincronizamos nuestro codigo con la base de datos
 sql.sync()
