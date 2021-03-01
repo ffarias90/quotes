@@ -18,18 +18,31 @@ const router = Router();
 
 //ejemplo de inicio del sistema. imprime una variable de sesion en la vista.
 router.get("/", (req, res) => {
-    res.render("form");
+    let existeError = false;
+    let error = req.flash("error");
+    if (req.body.quote == "") {
+        req.flash("error", "el campo author es obligatorio");
+        existeError = true;
+    };
+    res.render("form", { error });
 });
 
+//mostrar citas
 router.get("/quotes", async(req, res) => {
+    let mensaje = req.flash("mensaje");
+    let error = req.flash("error");
+    //primero encontramos todas las citas
     const quotes = await Quote.findAll();
-    res.render('quotes.ejs', { quotes: quotes });
+    res.render("quotes", { quotes, mensaje, error });
     //como se llama la variable : valor que va a tener
 });
 
 
-
+//crear nuevas citas
 router.post("/quotes", async(req, res) => {
+
+
+
     // usamos modelos para agregar nuevas citas
     const new_quote = await Quote.create({
         author: req.body.author,
@@ -38,7 +51,44 @@ router.post("/quotes", async(req, res) => {
     //const newquote = req.body;
     //console.log(newquote);
     //quotes.push(newquote);
-    res.render('quotes.ejs', { quotes: quotes });
+    res.redirect("/quotes");
+});
+
+//eliminar citas
+router.get('/quotes/delete/:id', async(req, res) => {
+    //encontramos la cita a eliminar mediante su id
+    const quote = await Quote.findByPk(req.params.id);
+    //una vez encontrada la eliminamos
+    await quote.destroy();
+    //mensaje de eliminado
+    req.flash('mensaje', 'quote deleted');
+    //redirigimos hacia la lista de citas
+    res.redirect("/quotes", );
+});
+
+//editar citas
+router.get('/quotes/edit/:id', async(req, res) => {
+    //encontramos la cita a eliminar mediante su id
+    const quote = await Quote.findByPk(req.params.id);
+    let mensaje = req.flash("mensaje");
+    let error = req.flash("error");
+    //primero encontramos todas las citas
+    const quotes = await Quote.findAll();
+    res.render("edit", { quote, mensaje, error });
+    //como se llama la variable : valor que va a tener
+});
+
+router.post('/quote/edit/:id', async(req, res) => {
+    let mensaje = req.flash("mensaje");
+    //encontramos la cita a editar mediante su id
+    const quote = await Quote.findByPk(req.params.id);
+    quote.author = req.body.author;
+    quote.quote = req.body.quote;
+
+    await quote.save();
+
+    res.redirect("/quotes");
+    //como se llama la variable : valor que va a tener
 });
 
 

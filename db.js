@@ -23,13 +23,13 @@ const Quote = sql.define('Quote', {
         type: Sequelize.STRING,
         allowNull: false
     }
-});
+}, { timestamps: true });
 
 
 // sincronizamos nuestro codigo con la base de datos
 sql.sync()
     .then(() => {
-        console.log('base de datos y tablas creadas');
+        console.log('tablas creadas, conectado a la base de datos');
     });
 
 // finalmente listamos los modelos que queremos exportar    

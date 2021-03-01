@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Quotes</title>
+    <!--estilos-->
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!--bootstrap-->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/jquery-3.5.1.min.js">
+    </script>
+    <script src="/static/js/bootstrap.bundle.min.js">
+    </script>
+    <!--estilos propios-->
+    <style>
+
+    </style>
+    <!--fin estilos-->
+</head>
+
+<body>
+    <div class="container">
+        <h3>Edit Quote</h3>
+
+        <div class="row">
+            <form class="col s6" action="/quote/edit/<%= quote.id %>" method="POST">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="name" type="text" class="validate" name="author" value="<%= quote.author%>">
+                        <label for="name">Your Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="quote" type="text" class="validate" name="quote" value="<%= quote.quote%>">
+                        <label for="quote">Your quote</label>
+                    </div>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Update my quote!">
+                <a class="btn btn-secondary" href="/quotes">Skip to quotes!</a>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <script>
+    </script>
+</body>
+
+</html>

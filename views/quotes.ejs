@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quotes</title>
     <!--estilos-->
-    <link rel="stylesheet" href="/static/style.css">
-    <!--Materialize-->
-    <link rel="stylesheet" href="/static/materialize.min.css">
-    <script src="/static/materialize.min.js">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!--bootstrap-->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <script src="/static/js/bootstrap.bundle.min.js">
     </script>
     <!--estilos propios-->
     <style>
@@ -22,17 +22,40 @@
 <body>
     <div class="container">
         <h4>List of Quotes</h4>
-        <ul class="collection with-header">
-            <% for (quote of quotes) { %>
-                <li class="collection-item">
-                    <%=quote.quote%> (
-                        <%=quote.author%>)
-                            <% } %>
-                </li>
-        </ul>
-        <a class="waves-effect waves-light btn" href="/">Back</a>
 
+        <% if (mensaje !="" ) { %>
+            <div class="alert alert-success">
+                <%= mensaje %>
+            </div>
 
+            <% } %>
+
+                <table class="table table-striped table-hover table-bordered table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Quote</th>
+                        <th>Author</th>
+                        <th>Action</th>
+                    </tr>
+
+                    <% for (quote of quotes) { %>
+                        <tr>
+                            <td>
+                                <%= quote.id%>
+                            </td>
+                            <td>
+                                <%= quote.quote%>
+                            </td>
+                            <td>
+                                <%= quote.author%>
+                            </td>
+                            <td><a href="quotes/edit/<%=quote.id %> ">edit</a>
+                                <a href="quotes/delete/<%=quote.id %> ">delete</a></td>
+                        </tr>
+                        <% } %>
+
+                </table>
+                <a class="btn btn-secondary" href="/">Back</a>
 
 
 
